@@ -90,7 +90,7 @@
     if ((g[0] & 0xe000) === 0x2000) return { kind: 'Global unicast (2000::/3)', notes: ['Routable on the public internet (unless it falls in a special block).'], flags: {} };
     return { kind: 'Reserved or unassigned', notes: ['Not in 2000::/3, and no special block matches.'], flags: {} };
   }
-  function split64(g) { return { net: g.slice(0, 4).map(hex).join(':') + '::/64', iid: g.slice(4).map(hex).join(':'), eui64: (g[5] & 0xff) === 0xff && (g[6] & 0xff00) === 0xfe00 }; }
+  function split64(g) { return { net: canonical(g.slice(0, 4).concat([0, 0, 0, 0])) + '/64', iid: g.slice(4).map(hex).join(':'), eui64: (g[5] & 0xff) === 0xff && (g[6] & 0xff00) === 0xfe00 }; }
   function analyze(input) {
     var p = parse(input);
     if (!p.ok) return p;
