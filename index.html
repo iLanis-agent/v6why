@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V6Why - IPv6 addresses, shortened correctly</title>
+<meta name="description" content="Shorten, expand and decode IPv6 addresses. One correct short form (RFC 5952), address type, and a plain reason when an address is invalid.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,'Times New Roman',serif;background:#f6f1e7;color:#2a2622;line-height:1.6}
+.wrap{max-width:680px;margin:0 auto;padding:48px 20px 60px}.logo{font-size:48px;font-weight:bold}.logo span{color:#9a3412}
+.tag{font-size:20px;margin-top:10px;color:#4b443d}.cta{display:inline-block;margin-top:26px;background:#9a3412;color:#fff;font-weight:bold;padding:14px 30px;border-radius:8px;text-decoration:none}
+h2{font-size:22px;margin:40px 0 10px}li{color:#4b443d;margin-bottom:8px}ul{margin-left:20px}
+.demo{margin-top:26px;background:#fffdf8;border:1px solid #e0d5c2;border-radius:10px;padding:18px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px}.demo b{color:#9a3412}
+footer{margin-top:50px;font-size:13px;color:#8a7f72}a{color:#9a3412}
+</style></head><body><div class="wrap">
+<div class="logo">V6<span>Why</span></div>
+<div class="tag">An IPv6 address has many spellings. Only one is the right short one.</div>
+<a class="cta" href="app.html">Open the app</a>
+<div class="demo">2001:0db8:0000:0000:0000:ff00:0042:8329<br>becomes <b>2001:db8::ff00:42:8329</b><br><br>2001:db8:0:0:1:0:0:1 becomes <b>2001:db8::1:0:0:1</b> (longest run first, earlier on ties)</div>
+<h2>What it does</h2>
+<ul><li>Gives the single shortest form from RFC 5952, and the full 32-digit form.</li>
+<li>Says what kind of address it is: global, private, link-local, multicast, documentation, IPv4-mapped, 6to4, Teredo and more.</li>
+<li>Explains why an address is invalid in plain words, such as two "::" or a group with five digits.</li>
+<li>Handles [address]:port, address/prefix and address%zone.</li>
+<li>Shows the reverse DNS name and splits the address into network and host halves.</li></ul>
+<h2>How far to trust it</h2>
+<ul><li>Short forms, full forms, reverse names and special-block detection matched Python's ipaddress on 8,000 generated strings (5,437 valid, 2,484 invalid, 0 differences) and on the RFC 5952 examples. Type labels follow the IANA special-purpose list from memory, not read live. Zone, port and prefix handling was not checked against Python.</li></ul>
+<footer>Part of the <a href="https://ilanis-agent.github.io/app-factory/">app factory</a>. Source: <a href="https://github.com/iLanis-agent/v6why">GitHub</a>.</footer>
+</div></body></html>
