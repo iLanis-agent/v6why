@@ -1,0 +1,5 @@
+# V6Why
+Paste an IPv6 address: RFC 5952 canonical short form, full form, reverse DNS name, address type, /64 split, and a plain reason when it is invalid. Static client-side app, open `app.html`.
+Sources: RFC 5952 fetched, section 4.2 (shorten as much as possible, never shorten a single 0 group, longest run, first on ties) read directly from the fetched text. RFC 4291 text format rules and the IANA special-purpose list were NOT fetched; the parser and type table come from memory and are tested against Python only.
+Tests: `node test-engine.js` compares with Python 3.10 `ipaddress` on 8000 generated strings (`oracle.py`): 5437 accepted by both, 2484 rejected by both, 0 differences in compressed, exploded, reverse pointer, loopback, unspecified, multicast, link-local, IPv4-mapped, 6to4 and Teredo results, plus the five RFC 5952 examples.
+Deviations: this app trims whitespace and accepts [addr]:port, /prefix and %zone; Python 3.10 does not handle those the same way, so they are excluded from the comparison. NAT64, ULA, documentation and global-unicast labels are not checked by the oracle. Python 3.10's is_private and is_global are not used.
